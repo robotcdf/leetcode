@@ -20,6 +20,31 @@
  */
 public class Solution {
     public int search(int[] nums, int target) {
+        int first=0, last=nums.length;
+        int middle = 0;
+        
+        while(first != last){
+            middle = first + (last-first)/2;
+            
+            if(nums[middle] == target)
+            return middle;
+            
+            if(nums[first] <= nums[middle]){
+                if(nums[first] <= target && target < nums[middle]){     //左右边界需要做等于判断
+                    last = middle;
+                }else{
+                    first = middle + 1;
+                }
+            }else{
+                if(nums[middle] < target && target <= nums[last-1]){    //左右边界需要做等于判断
+                    first = middle + 1;
+                }else{
+                    last = middle;
+                }
+            }     
+        }
+        
+        return -1;
         
     }
 }
